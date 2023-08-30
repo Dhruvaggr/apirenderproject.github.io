@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function callAPI()
+        {
+           let result = await fetch('https://jsonplaceholder.typicode.com/posts');
+            result = await result.json();
+            // console.log(result);
+            const html = document.getElementById("tableBody");
+            html.innerHTML = result.map((obj)=>{
+               return `<tr>
+                    <td> ${obj.body}</td>
+                    <td> ${obj.id}</td>
+                    <td> ${obj.title}</td>
+                    <td> ${obj.userId}</td>
+                </tr>`
+            }).join("");
+
+        }
+        callAPI();
+        const d = new Date();
+        alert(d);
+    </script>
+    <table border="3">
+        <thead>
+            <th>Body</th>
+            <th>id</th>
+            <th>title</th>
+            <th>userId</th>
+
+        </thead>
+        <tbody id="tableBody">
+
+        </tbody>
+    </table>
+
+    <p onmouseover="this.style.backgroundColor='red'">THIS IS GOOD</p>
+</body>
+</html>
